@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 0
 
 spring:
   datasource:
@@ -16,6 +16,11 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
 
 axon:
   axonserver:
@@ -34,7 +39,51 @@ axon:
         initial-segment-count: 1
         mode: subscribing
 
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 3000
+        readTimeout: 3000
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      productCommand:
+        failureRateThreshold: 30
+        slidingWindowSize: 5
+        minimumNumberOfCalls: 3
+        waitDurationInOpenState: 10s
+
+  retry:
+    instances:
+      productCommand:
+        maxAttempts: 3
+        waitDuration: 500ms
+
+  ratelimiter:
+    instances:
+      productCommand:
+        limitForPeriod: 5
+        limitRefreshPeriod: 1s
+        timeoutDuration: 0
+
 logging:
   level:
     org.axonframework: DEBUG
     com.core: DEBUG
+    io.github.resilience4j: DEBUG
+    org.springframework.cloud.openfeign: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,circuitbreakers,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    health:
+      show-details: always
