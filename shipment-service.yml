@@ -1,0 +1,40 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/shipment?createDatabaseIfNotExist=true
+    username: root
+    password: ""
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+axon:
+  axonserver:
+    servers: localhost:8124
+    context: default
+
+  eventstore:
+    jpa:
+      schema-generation:
+        enabled: true
+
+  eventhandling:
+    processors:
+      order:
+        source: eventStore
+        initial-segment-count: 1
+        mode: subscribing
+
+logging:
+  level:
+    org.axonframework: DEBUG
+    com.core: DEBUG
