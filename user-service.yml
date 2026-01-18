@@ -7,6 +7,7 @@ spring:
     username: root
     password: lavieenrose
     driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
@@ -16,14 +17,24 @@ spring:
       hibernate:
         format_sql: true
 
-axon:
-  eventstore:
-    jpa:
-      schema-generation:
-        enabled: true
-  eventhandling:
-    processors:
-      user:
-        mode: subscribing
-        source: eventStore
-        initial-segment-count: 1
+  axon:
+    axonserver:
+      servers: localhost:8124
+      context: default
+    eventstore:
+      jpa:
+        schema-generation:
+          enabled: true
+    eventhandling:
+      processors:
+        user:
+          mode: subscribing
+          source: eventStore
+          initial-segment-count: 1
+
+axoniq:
+  axonserver:
+    default-command-timeout: 30000
+    command-timeout: 60000
+    heartbeat-interval: 5000
+    heartbeat-timeout: 15000
