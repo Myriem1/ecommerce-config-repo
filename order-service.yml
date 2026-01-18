@@ -17,6 +17,11 @@ spring:
       hibernate:
         format_sql: true
 
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
 axon:
   axonserver:
     servers: localhost:8124
@@ -33,17 +38,6 @@ axon:
         source: eventStore
         initial-segment-count: 1
         mode: subscribing
-
-logging:
-  level:
-    org.axonframework: DEBUG
-    com.core: DEBUG
-
-spring:
-  cloud:
-    openfeign:
-      circuitbreaker:
-        enabled: true
 
 feign:
   client:
@@ -76,6 +70,8 @@ resilience4j:
 
 logging:
   level:
+    org.axonframework: DEBUG
+    com.core: DEBUG
     io.github.resilience4j: DEBUG
     org.springframework.cloud.openfeign: DEBUG
 
