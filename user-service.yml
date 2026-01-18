@@ -1,0 +1,29 @@
+server:
+  port: 8084
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/user?createDatabaseIfNotExist=true
+    username: root
+    password: lavieenrose
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+axon:
+  eventstore:
+    jpa:
+      schema-generation:
+        enabled: true
+  eventhandling:
+    processors:
+      user:
+        mode: subscribing
+        source: eventStore
+        initial-segment-count: 1
