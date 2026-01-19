@@ -1,6 +1,4 @@
 
-server:
-  port: 8080
 
 axon:
   axonserver:
@@ -116,5 +114,6 @@ management:
       enabled: true
     ratelimiters:
       enabled: true
+
 
 
