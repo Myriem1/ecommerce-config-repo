@@ -15,7 +15,4 @@ logging:
   level:
     com.netflix.discovery: DEBUG
     org.springframework.cloud.netflix.eureka: DEBUG
-    org.springframework: INFO
-    org.axonframework: DEBUG    # ← Obligatoire pour voir les commands/events
-    org.springframework.transaction: DEBUG  # Pour voir les saves JPA
-    root: INFO
+
