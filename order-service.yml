@@ -20,7 +20,7 @@ spring:
   cloud:
     openfeign:
       circuitbreaker:
-        enabled: true
+        enabled: false
 
 axon:
   axonserver:
@@ -60,6 +60,12 @@ resilience4j:
       productCommand:
         maxAttempts: 3
         waitDuration: 500ms
+        retryExceptions:
+          - feign.FeignException
+          - java.net.ConnectException
+          - java.net.SocketTimeoutException
+        ignoreExceptions:
+          - java.lang.IllegalStateException
 
   ratelimiter:
     instances:
