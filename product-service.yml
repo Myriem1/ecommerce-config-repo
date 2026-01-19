@@ -3,17 +3,16 @@
 axon:
   axonserver:
     servers: localhost:8124
-    context: default
-  eventstore:
-    jpa:
-      schema-generation:
-        enabled: true
+    enabled: true
+  distributed-command-bus:
+    enabled: false
   eventhandling:
     processors:
-      product:
-        source: eventStore
-        initial-segment-count: 1
-        mode: subscribing
+      payments:
+        mode: tracking
+    tokenstore:
+      jpa:
+        enabled: true
 
 eureka:
   client:
