@@ -1,16 +1,4 @@
-spring:
-  datasource:
-    username: root
-    password:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
+
 server:
   port: 8080
 
@@ -128,4 +116,5 @@ management:
       enabled: true
     ratelimiters:
       enabled: true
+
 
