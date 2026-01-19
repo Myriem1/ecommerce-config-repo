@@ -46,7 +46,7 @@ resilience4j:
           - java.net.ConnectException
           - java.net.SocketTimeoutException
         ignoreExceptions:
-          - java.lang.IllegalStateException
+          - org.springframework.web.server.ResponseStatusException
 
   ratelimiter:
     instances:
