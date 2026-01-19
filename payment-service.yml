@@ -93,12 +93,13 @@ management:
     web:
       exposure:
         include: health,info,prometheus
-  endpoint:
-    prometheus:
-      enabled: true
   metrics:
-    enable:
-      all: true  # activer toutes les métriques
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    health:
+      show-details: always
 
 # ===================== CONSEIL POUR LE DEMARRAGE =====================
 # Pour lancer deux instances avec ports fixes à la place du port dynamique :
