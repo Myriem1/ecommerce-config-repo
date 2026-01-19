@@ -25,19 +25,16 @@ spring:
 axon:
   axonserver:
     servers: localhost:8124
-    context: default
-
-  eventstore:
-    jpa:
-      schema-generation:
-        enabled: true
-
+    enabled: true
+  distributed-command-bus:
+    enabled: false
   eventhandling:
     processors:
       order:
-        source: eventStore
-        initial-segment-count: 1
-        mode: subscribing
+        mode: tracking
+    tokenstore:
+      jpa:
+        enabled: true
 
 feign:
   client:
