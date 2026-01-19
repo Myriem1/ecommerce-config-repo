@@ -76,10 +76,22 @@ resilience4j:
 
 logging:
   level:
+    # ===== AXON =====
     org.axonframework: DEBUG
-    com.core: DEBUG
-    io.github.resilience4j: DEBUG
+
+    # ===== YOUR APP =====
+    com.orderservice: DEBUG
+
+    # ===== RESILIENCE4J (TARGETED) =====
+    io.github.resilience4j.retry: DEBUG
+    io.github.resilience4j.circuitbreaker: DEBUG
+    io.github.resilience4j.spring6.retry: DEBUG
+    io.github.resilience4j.spring6.circuitbreaker: DEBUG
+
+    # ===== FEIGN =====
+    feign.Logger: DEBUG
     org.springframework.cloud.openfeign: DEBUG
+
 
 management:
   endpoints:
