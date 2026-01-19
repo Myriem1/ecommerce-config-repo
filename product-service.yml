@@ -5,14 +5,14 @@ axon:
     servers: localhost:8124
     enabled: true
   distributed-command-bus:
-    enabled: false
+    enabled: true  
   eventhandling:
     processors:
-      payments:
-        mode: tracking
-    tokenstore:
-      jpa:
-        enabled: true
+      # Définir un processor pour les événements de commandes
+      stock-management:
+        mode: tracking  
+        source: eventStore
+        event-availability-timeout: 1000
 
 eureka:
   client:
@@ -128,6 +128,7 @@ management:
   metrics:
     tags:
       application: product-service
+
 
 
 
